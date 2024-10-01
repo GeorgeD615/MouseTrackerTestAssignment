@@ -9,11 +9,17 @@
 <script>
     let mouseMovements = [];
 
+    function toLocalISOString(date) {
+        const timezoneOffset = date.getTimezoneOffset() * 60000;
+        const localISOTime = new Date(date.getTime() - timezoneOffset).toISOString().slice(0, -1);
+        return localISOTime;
+    }
+
     document.addEventListener('mousemove', function (event) {
         let movement = {
             X: event.clientX,
             Y: event.clientY,
-            T: new Date().toISOString()
+            T: toLocalISOString(new Date())
         };
         mouseMovements.push(movement);
     });
@@ -28,7 +34,7 @@
         }).then(response => {
             if (response.ok) {
                 alert('Данные успешно отправлены!');
-                mouseMovements = [];  // Очистить массив после отправки
+                mouseMovements = [];
             } else {
                 alert('Произошла ошибка при отправке данных.');
             }
