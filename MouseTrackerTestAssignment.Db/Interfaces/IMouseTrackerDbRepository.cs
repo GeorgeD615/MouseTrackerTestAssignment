@@ -4,6 +4,6 @@ namespace MouseTrackerTestAssignment.Db.Interfaces
 {
     public interface IMouseTrackerDbRepository
     {
-        void SaveMouseMovement(MouseMovement mouseMovement);
+        Task SaveMouseMovementAsync(MouseMovement mouseMovement);
     }
 }

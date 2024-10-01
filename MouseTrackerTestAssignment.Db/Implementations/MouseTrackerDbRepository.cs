@@ -12,10 +12,10 @@ namespace MouseTrackerTestAssignment.Db.Implementations
             this.dbContext = dbContext;
         }
 
-        public void SaveMouseMovement(MouseMovement mouseMovement)
+        public async Task SaveMouseMovementAsync(MouseMovement mouseMovement)
         {
-            dbContext.MouseMovements.Add(mouseMovement);
-            dbContext.SaveChanges();
+            await dbContext.MouseMovements.AddAsync(mouseMovement);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

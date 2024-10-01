@@ -21,11 +21,11 @@ namespace MouseTrackerTestAssignment.Controllers
         }
 
         [HttpPost]
-        public IActionResult SendMousePositions([FromBody] List<MousePositionDTO> mousePositions)
+        public async Task<IActionResult> SendMousePositionsAsync([FromBody] List<MousePositionDTO> mousePositions)
         {
             string mouseMovementData = JsonConvert.SerializeObject(mousePositions);
             var mouseMovement = new MouseMovement() { Data = mouseMovementData };
-            mouseTrackerDbRepository.SaveMouseMovement(mouseMovement);
+            await mouseTrackerDbRepository.SaveMouseMovementAsync(mouseMovement);
             return RedirectToAction(nameof(Index));
         }
     }
